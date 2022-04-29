@@ -3,10 +3,37 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
 /// store all the password in the data slice
 //var data []string
+// create the @ function
+func attherate(uData []string) {
+	var pass []string
+	fName := uData[0]
+	for _, data := range uData {
+		if data == fName {
+			continue
+		} else {
+			password := fName + "@" + data
+			pass = append(pass, password)
+		}
+	}
+	fLatterU := strings.ToUpper(string(fName[0]))
+	fNameU := fLatterU + fName[1:]
+	for _, data := range uData {
+		if data == fName {
+			continue
+		} else {
+			password := fNameU + "@" + data
+			pass = append(pass, password)
+		}
+	}
+	fmt.Print(pass)
+
+}
+
 // create a help function ---
 func help() {
 	fmt.Println("\033[35;1m Use : cupp ")
@@ -32,9 +59,10 @@ func main() {
 		fmt.Print("\033[33;1m First four digit aadhar number: ")
 		fmt.Scanf("%s", &aadhar)
 		userData = append(userData, fName, lName, dob, aadhar, num)
-		fmt.Print(userData)
+		attherate(userData)
 
 	} else {
 		fmt.Println("\033[31;1m Invalid argument provided ")
+		help()
 	}
 }
