@@ -9,8 +9,9 @@ import (
 /// store all the password in the data slice
 //var data []string
 // create the @ function
-func underAtthe(uData []string) {
+func underAtthe(uData []string) []string {
 	var pass []string
+	// want to add or remove years in password chenge the years slice
 	var years = []string{"1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"}
 	fName := uData[0]
 	for _, data := range uData {
@@ -45,9 +46,25 @@ func underAtthe(uData []string) {
 		passunders := fNameU + "_" + year
 		pass = append(pass, passunders)
 	}
-	fmt.Print(pass)
+	return pass
 
 } //create a special function --
+func specialD(data []string, mob string) []string {
+	var localpass []string
+	// 123 pass
+	fName := data[0]
+	lName := data[1]
+	localpass = append(localpass, fName+"123")
+	localpass = append(localpass, fName+"123456")
+	localpass = append(localpass, fName+"iloveyou")
+	localpass = append(localpass, fName+"abc")
+	localpass = append(localpass, fName+"")
+	localpass = append(localpass, mob)
+	localpass = append(localpass, string(fName[0]))
+	localpass = append(localpass, string(fName[0])+string(lName[0]))
+	return localpass
+}
+
 // create a help function ---
 func help() {
 	fmt.Println("\033[35;1m Use : cupp ")
@@ -66,14 +83,22 @@ func main() {
 		fmt.Scanf("%s", &fName)
 		fmt.Print("\033[33;1m Last name of the target: ")
 		fmt.Scanf("%s", &lName)
-		fmt.Print("\033[33;1m Date of birth: ")
+		fmt.Print("\033[33;1m Date of birth(ddmmyyyy): ")
 		fmt.Scanf("%s", &dob)
 		fmt.Print("\033[33;1m Target mobile number without 91 :")
 		fmt.Scanf("%s", &num)
 		fmt.Print("\033[33;1m First four digit aadhar number: ")
 		fmt.Scanf("%s", &aadhar)
-		userData = append(userData, fName, lName, dob, aadhar, num)
-		underAtthe(userData)
+		// create the dob year
+		dobyear := dob[4:]
+		userData = append(userData, fName, lName, dobyear, aadhar, num)
+		// call the underscore and at the rate function ----
+		passlist1 := underAtthe(userData)
+		// call the special function
+		var sData []string
+		sData = append(sData, fName, lName)
+		passlist2 := specialD(sData, num)
+		fmt.Print(passlist1, passlist2)
 
 	} else {
 		fmt.Println("\033[31;1m Invalid argument provided ")
