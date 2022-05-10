@@ -60,6 +60,10 @@ func specialD(data []string, mob string) []string {
 	localpass = append(localpass, fName+"abc")
 	localpass = append(localpass, fName+"")
 	localpass = append(localpass, mob)
+	localpass = append(localpass, "password")
+	localpass = append(localpass, "abc123")
+	localpass = append(localpass, "1234567890")
+	localpass = append(localpass, "qwerty")
 	localpass = append(localpass, string(fName[0]))
 	localpass = append(localpass, string(fName[0])+string(lName[0]))
 	return localpass
@@ -77,31 +81,54 @@ func main() {
 		help()
 	} else if os.Args[1] == "-i" || os.Args[1] == "-i " {
 		// now take the input from the user and store them
-		var fName, lName, dob, aadhar, num string
+		var fName, lName, dob, aadhar, num, pLName, pFName string
 		var userData []string
 		fmt.Print("\033[33;1m First name of the target: ")
 		fmt.Scanf("%s", &fName)
+		if isEmpty(fName) {
+			panic("Sorry first name can not be empty ")
+		}
 		fmt.Print("\033[33;1m Last name of the target: ")
 		fmt.Scanf("%s", &lName)
+		if isEmpty(lName) {
+			panic("Sorry last name can not be empty ")
+		}
 		fmt.Print("\033[33;1m Date of birth(ddmmyyyy): ")
 		fmt.Scanf("%s", &dob)
 		fmt.Print("\033[33;1m Target mobile number without 91 :")
 		fmt.Scanf("%s", &num)
 		fmt.Print("\033[33;1m First four digit aadhar number: ")
 		fmt.Scanf("%s", &aadhar)
-		// create the dob year
-		dobyear := dob[4:]
-		userData = append(userData, fName, lName, dobyear, aadhar, num)
+		fmt.Print("\033[33;1m First name of the target partner: ")
+		fmt.Scanf("%s", &pFName)
+		fmt.Print("\033[33;1m Last name of the target partner: ")
+		fmt.Scanf("%s", &pLName)
+		// create the dob
+		if isEmpty(dob) {
+			dobyear := ""
+			userData = append(userData, fName, lName, dobyear, aadhar, num)
+		} else {
+			dobyear := dob[4:]
+			userData = append(userData, fName, lName, dobyear, aadhar, num)
+		}
 		// call the underscore and at the rate function ----
 		passlist1 := underAtthe(userData)
 		// call the special function
 		var sData []string
 		sData = append(sData, fName, lName)
-		passlist2 := specialD(sData, num)
-		fmt.Print(passlist1, passlist2)
+		fmt.Print(passlist1)
 
 	} else {
 		fmt.Println("\033[31;1m Invalid argument provided ")
 		help()
+	}
+}
+
+// create a function to check empty var
+func isEmpty(variable string) bool {
+	if variable == "" {
+		return true
+	} else {
+		return false
 	}
 }
