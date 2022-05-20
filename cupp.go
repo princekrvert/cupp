@@ -112,16 +112,31 @@ func main() {
 			userData = append(userData, fName, lName, dobyear, aadhar, num)
 		}
 		// call the underscore and at the rate function ----
-		passlist1 := underAtthe(userData)
+		passlistOne := underAtthe(userData)
 		// call the special function
 		var sData []string
 		sData = append(sData, fName, lName)
-		fmt.Print(passlist1)
+		passlistTwo := specialD(sData, num)
+		fmt.Print(passlistTwo)
+		fmt.Print(inter(passlistOne, passlistTwo))
 
 	} else {
 		fmt.Println("\033[31;1m Invalid argument provided ")
 		help()
 	}
+}
+
+// create a function to take the intersection of two slice
+func inter(data []string, dataT []string) []string {
+	var common []string
+	for _, dataOne := range data {
+		for _, dataTwo := range dataT {
+			if dataOne == dataTwo {
+				common = append(common, dataOne)
+			}
+		}
+	}
+	return common
 }
 
 // create a function to check empty var
