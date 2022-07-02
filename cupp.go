@@ -118,25 +118,25 @@ func main() {
 		sData = append(sData, fName, lName)
 		passlistTwo := specialD(sData, num)
 		fmt.Print(passlistTwo)
-		fmt.Print(inter(passlistOne, passlistTwo))
-
+		writePass(fName, passlistOne)
 	} else {
 		fmt.Println("\033[31;1m Invalid argument provided ")
 		help()
 	}
 }
 
-// create a function to take the intersection of two slice
-func inter(data []string, dataT []string) []string {
-	var common []string
-	for _, dataOne := range data {
-		for _, dataTwo := range dataT {
-			if dataOne == dataTwo {
-				common = append(common, dataOne)
-			}
-		}
+// create a function to write the password to the file
+func writePass(fName string, passlist []string) {
+	// open the file handler
+	file, err := os.Create(fName + ".txt")
+	if err != nil {
+		fmt.Printf("\033[31;1m [!] Error in file creation ")
 	}
-	return common
+	defer file.Close()
+	for _, pass := range passlist {
+		file.WriteString(pass + "\n")
+
+	}
 }
 
 // create a function to check empty var
