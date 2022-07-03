@@ -117,8 +117,9 @@ func main() {
 		var sData []string
 		sData = append(sData, fName, lName)
 		passlistTwo := specialD(sData, num)
-		fmt.Print(passlistTwo)
-		writePass(fName, passlistOne)
+		fullList := oneList(passlistOne,passlistTwo)
+		writePass(fName, fullList)
+		fmt.Printf("\033[36;1m [~] Password saved into %s ",fName+".txt")
 	} else {
 		fmt.Println("\033[31;1m Invalid argument provided ")
 		help()
@@ -146,4 +147,11 @@ func isEmpty(variable string) bool {
 	} else {
 		return false
 	}
+}
+//Create a function to add the two slices 
+func oneList(fList []string,sList []string) []string{
+	for _,item := range sList{
+		fList = append(fList,item)
+	}
+	return fList
 }
