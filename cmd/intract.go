@@ -69,13 +69,11 @@ func namePsuffix(fName, lName string) []string {
 func Petpass(Petname, other string) []string {
 	pass9 := []string{}
 	// write the combination here ...
-	pass9 = append(pass9, Petname+"123456")
-	pass9 = append(pass9, Petname+"qwerty")
-	pass9 = append(pass9, Petname+"@123")
-	pass9 = append(pass9, Petname+"iloveyou")
-	pass9 = append(pass9, Petname+"iscute")
-	pass9 = append(pass9, Petname+"abc")
-	pass9 = append(pass9, Petname+"@abc")
+	petpass, _ := word.Eachword("files/pet.txt")
+	for _, petword := range petpass {
+		pass9 = append(pass9, Petname+petword)
+		pass9 = append(pass9, petword+Petname)
+	}
 	pass9 = append(pass9, Petname+other)
 	pass9 = append(pass9, other+Petname)
 	pass9 = append(pass9, Petname+"and"+other)
@@ -207,7 +205,7 @@ var intractCmd = &cobra.Command{
 			writepass(pass6, fName)
 		}
 		// create a slice for indian password and write down into the file ..
-		indianPass := []string{"password", "123456", "12345678", "bigbasket", "123456789", "pass@123", "1234567890", "anmol123", "abcd1234", "googledummy", "Indya123", "qwerty123", "sahilji1", "987654321", "kapil*12345", "123456789a", "p@ssw0rd", "India@123", "india123", "12345"}
+		indianPass, _ := word.Eachword("files/indianpass.txt")
 		writepass(indianPass, fName)
 		// check if petname is empty..
 		if isEmpty(petname) {
