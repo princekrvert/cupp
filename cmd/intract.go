@@ -1,5 +1,5 @@
 /*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
+Copyright © 2023 prince kumar
 
 */
 package cmd
@@ -9,7 +9,7 @@ import (
 	"os"
 
 	"github.com/common-nighthawk/go-figure"
-
+	"github.com/princekrvert/cupp/word"
 	"github.com/spf13/cobra"
 )
 
@@ -49,23 +49,18 @@ func writepass(passl []string, value string) {
 func namePsuffix(fName, lName string) []string {
 	passList := []string{}
 	// want to add or remove years in password chenge the years slice
-	var years = []string{"1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"}
+	years, _ := word.Eachword("files/year.txt")
 	for _, data := range years {
 		passList = append(passList, fName+data)
 		passList = append(passList, fName+"_"+data)
 		passList = append(passList, fName+"@"+data)
 	}
-	passList = append(passList, fName+"123")
-	passList = append(passList, fName+"123456")
-	passList = append(passList, fName+"iloveyou")
-	passList = append(passList, fName+"abc")
-	passList = append(passList, fName+"@india")
-	passList = append(passList, fName+"@"+lName)
+	ranword, _ := word.Eachword("files/indian.txt")
+	for _, word := range ranword {
+		passList = append(passList, fName+word)
+	}
 	passList = append(passList, fName+lName)
 	passList = append(passList, lName+fName)
-	passList = append(passList, "qwerty")
-	passList = append(passList, "password")
-	passList = append(passList, lName+"123456")
 
 	return passList
 }
@@ -116,23 +111,18 @@ func nameSuffix(fName, lName string) []string {
 	file.Close()
 	//file is closed here
 	// want to add or remove years in password chenge the years slice
-	var years = []string{"1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"}
+	years, _ := word.Eachword("files/year.txt")
 	for _, data := range years {
 		passList = append(passList, fName+data)
 		passList = append(passList, fName+"_"+data)
 		passList = append(passList, fName+"@"+data)
 	}
-	passList = append(passList, fName+"123")
-	passList = append(passList, fName+"123456")
-	passList = append(passList, fName+"iloveyou")
-	passList = append(passList, fName+"abc")
-	passList = append(passList, fName+"@india")
-	passList = append(passList, fName+"@"+lName)
+	randword, _ := word.Eachword("files/indian.txt")
+	for _, word := range randword {
+		passList = append(passList, fName+word)
+	}
 	passList = append(passList, fName+lName)
 	passList = append(passList, lName+fName)
-	passList = append(passList, "qwerty")
-	passList = append(passList, "password")
-	passList = append(passList, lName+"123456")
 
 	return passList
 }
