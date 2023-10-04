@@ -11,7 +11,7 @@ password generator tool for indian
 * `pkg install git`
 * `git clone https://github.com/princekrvert/cupp.git `
 * `cd cupp`
-* `go run cupp.go`
+* `go run cupp.go --help`
  ### social media 
   <a href="https://www.instagram.com/princekrvert/"> <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"></a>
 <a href="https://m.twitter.com/princekrvert" > <img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white"> </a>
