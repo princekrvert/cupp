@@ -47,6 +47,11 @@ var ranCmd = &cobra.Command{
 	Short: "This will genarate a random password list",
 	Long:  `Enter the length of the password list and the number of password to generate the password.`,
 	Run: func(cmd *cobra.Command, args []string) {
+		// Check if arga is provided
+		if len(args) < 1 {
+			fmt.Println("\033[31;1m Require args is not provided..")
+			os.Exit(1)
+		}
 		// first check the lenght of the password ..
 		var maxnum string
 		minnum := "1"
